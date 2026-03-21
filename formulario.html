@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Filtros - Vagones</title>
+    <style>
+        :root { --cat-yellow: #FFCD00; --cat-black: #191919; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; padding: 20px; }
+        .form-card { background: white; max-width: 500px; margin: auto; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border-top: 8px solid var(--cat-yellow); }
+        h2 { text-align: center; color: var(--cat-black); margin-top: 0; }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; color: #333; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+        button { width: 100%; padding: 15px; background: var(--cat-black); color: var(--cat-yellow); border: none; border-radius: 6px; font-weight: bold; font-size: 1.1rem; margin-top: 20px; cursor: pointer; }
+        button:hover { background: #333; }
+        #output { margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 6px; display: none; word-break: break-all; font-family: monospace; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <h2>📦 Registro de Vagón</h2>
+    <form id="filterForm">
+        <label>Número de Parte:</label>
+        <input type="text" id="partNo" placeholder="Ej: 1R-1808" required>
+
+        <label>Marca:</label>
+        <select id="brand">
+            <option value="CAT">Caterpillar</option>
+            <option value="Donaldson">Donaldson</option>
+            <option value="Fleetguard">Fleetguard</option>
+            <option value="Baldwin">Baldwin</option>
+            <option value="Sullair">Sullair</option>
+            <option value="Hyster">Hyster</option>
+        </select>
+
+        <label>Vagón de Almacén:</label>
+        <select id="vagon">
+            <option value="VAGÓN 01">Vagón 01 (Motores)</option>
+            <option value="VAGÓN 02">Vagón 02 (Aire/Volumen)</option>
+            <option value="VAGÓN 03">Vagón 03 (Hidráulico)</option>
+            <option value="EXTERIOR">Área Exterior / Piso</option>
+        </select>
+
+        <label>Ubicación Específica (Estante/Nivel):</label>
+        <input type="text" id="shelf" placeholder="Ej: E2-N4" required>
+
+        <label>Cantidad en Existencia:</label>
+        <input type="number" id="qty" placeholder="0" required>
+
+        <button type="button" onclick="generateRow()">GENERAR LÍNEA PARA CATÁLOGO</button>
+    </form>
+
+    <div id="output">
+        <strong>Copiar esto a inventario.html:</strong><br><br>
+        <span id="codeResult"></span>
+    </div>
+</div>
+
+<script>
+function generateRow() {
+    const part = document.getElementById('partNo').value;
+    const brand = document.getElementById('brand').value;
+    const vagon = document.getElementById('vagon').value;
+    const shelf = document.getElementById('shelf').value;
+    const qty = document.getElementById('qty').value;
+    
+    // Determinar estado por cantidad
+    let statusClass = "ok";
+    let statusText = "DISPONIBLE";
+    if (qty == 0) { statusClass = "empty"; statusText = "AGOTADO"; }
+    else if (qty < 5) { statusClass = "low"; statusText = "STOCK BAJO"; }
+
+    const htmlRow = `<tr>
+    <td>${part}</td>
+    <td>${brand}</td>
+    <td>Pendiente de asignar equipo</td>
+    <td>${vagon} - ${shelf}</td>
+    <td>${qty}</td>
+    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+</tr>`;
+
+    document.getElementById('codeResult').innerText = htmlRow;
+    document.getElementById('output').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

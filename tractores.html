@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Tractores - Almacén</title>
+    <style>
+        :root {
+            --cat-yellow: #FFCD00;
+            --cat-black: #191919;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--cat-black);
+            color: var(--cat-yellow);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 5px solid var(--cat-yellow);
+        }
+
+        .back-btn {
+            color: var(--cat-yellow);
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 20px;
+            border: 2px solid var(--cat-yellow);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: var(--cat-yellow);
+            color: var(--cat-black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            border-left: 5px solid var(--cat-yellow);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            color: var(--cat-black);
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .model-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+            transition: 0.3s;
+            text-decoration: none;
+            color: var(--cat-black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+        }
+
+        .model-card:hover {
+            border-color: var(--cat-yellow);
+            transform: translateX(10px);
+            background-color: #fffef0;
+        }
+
+        .model-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .spec-tag {
+            font-size: 0.75rem;
+            background: #fbe9e7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #d84315;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="back-btn">⬅ INICIO</a>
+    <h1>4. TRACTORES DE ORUGA (BULLDOZERS)</h1>
+</header>
+
+<div class="container">
+    <h2>Seleccione el modelo:</h2>
+    
+    <div class="model-grid">
+        <a href="equipos/04tractores/d8t.html" class="model-card">
+            <div>
+                <span class="model-name">CAT D8T</span>
+                <span class="spec-tag">Serie II</span>
+            </div>
+            <span>📋 Ver Filtros</span>
+        </a>
+
+        <a href="equipos/04tractores/d8l1.html" class="model-card">
+            <div>
+                <span class="model-name">CAT D8L No. 1</span>
+                <span class="spec-tag">Clásico</span>
+            </div>
+            <span>📋 Ver Filtros</span>
+        </a>
+
+        <a href="equipos/04tractores/d8l2.html" class="model-card">
+            <div>
+                <span class="model-name">CAT D8L No. 2</span>
+                <span class="spec-tag">Motor 3408</span>
+            </div>
+            <span>📋 Ver Filtros</span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
